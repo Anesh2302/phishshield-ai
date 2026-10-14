@@ -1,0 +1,59 @@
+# Secrets / environment
+.env
+.env.local
+*.env
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+coverage.xml
+*.sqlite3
+*.db
+
+# Node / Next.js
+node_modules/
+.next/
+out/
+dist/
+*.tsbuildinfo
+npm-debug.log*
+.pnpm-store/
+
+# Android
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+android/.idea/
+android/captures/
+*.apk
+*.aab
+
+# ML artifacts (model binaries are built locally by scripts)
+ml/artifacts/*.joblib
+ml/artifacts/*.keras
+
+# Storage / uploads / evidence (never commit user data)
+storage/
+uploads/
+quarantine/
+evidence_blobs/
+
+# Logs and crash dumps
+*.log
+hs_err_pid*.log
+core.*
+
+# OS
+.DS_Store
+Thumbs.db

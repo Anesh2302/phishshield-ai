@@ -1,0 +1,4 @@
+# Optional dependencies. Install only when the corresponding capability is needed.
+# The application reports these as unavailable capabilities when absent.
+# Requires a C toolchain (libyara) on the host.
+yara-python>=4.5 ; python_version >= "3.9"

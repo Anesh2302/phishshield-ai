@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "PhishShield AI — URL & Email Guardian",
+  "version": "0.1.0",
+  "description": "Checks links and sender domains against PhishShield AI's analyzer before you click. Privacy: sends only the URL/domain; see README.",
+  "permissions": ["storage", "tabs"],
+  "host_permissions": ["<all_urls>"],
+  "background": { "service_worker": "background.js" },
+  "action": { "default_popup": "popup.html", "default_title": "PhishShield AI" },
+  "options_page": "options.html",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

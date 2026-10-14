@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.PhishShield" parent="Theme.Material3.DayNight">
+        <item name="colorPrimary">@color/phish_blue</item>
+    </style>
+</resources>

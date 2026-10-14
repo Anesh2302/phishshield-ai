@@ -1,0 +1,26 @@
+{
+  "algorithm": "RandomForestClassifier",
+  "feature_schema": "1.0",
+  "dataset": {
+    "source": "synthetic (in-repo generator)",
+    "train_instances": 9600,
+    "validation_instances": 2400,
+    "holdout_instances": 4000,
+    "classes": {
+      "0": "benign",
+      "1": "malicious"
+    },
+    "disclaimer": "Synthetic benchmark only. Not a real-world traffic measurement; validate against real data before production use."
+  },
+  "validation": {
+    "accuracy": 1.0,
+    "roc_auc": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+  },
+  "holdout": {
+    "accuracy": 1.0,
+    "roc_auc": 1.0
+  }
+}

@@ -1,0 +1,29 @@
+/* PhishShield AI extension styles — compact, no external deps. */
+:root {
+  --ok: #177245;
+  --warn: #b26a00;
+  --bad: #b00020;
+}
+* { box-sizing: border-box; }
+body { font-family: system-ui, sans-serif; margin: 0; }
+.popup { width: 300px; padding: 12px; }
+h1 { font-size: 16px; margin: 0 0 8px; }
+p { font-size: 13px; margin: 6px 0; }
+button {
+  display: block; width: 100%; margin-top: 8px; padding: 8px;
+  border: 1px solid #ccc; border-radius: 6px; cursor: pointer;
+  background: #f5f5f5; font-size: 13px;
+}
+button.primary { background: #1a73e8; color: white; border-color: #1a73e8; }
+.verdict { font-weight: 700; }
+.ok { color: var(--ok); }
+.warn { color: var(--warn); }
+.bad { color: var(--bad); }
+.score { font-size: 22px; font-weight: 800; }
+.muted { color: #666; font-size: 11px; }
+.hidden { display: none; }
+.alert { border: 1px solid var(--bad); background: #fff0f0; padding: 8px; border-radius: 6px; font-size: 13px; }
+.field { display: block; width: 100%; margin: 8px 0; padding: 8px; border: 1px solid #ccc; border-radius: 6px; }
+label { font-size: 12px; font-weight: 600; }
+.chain { list-style: none; margin: 4px 0 0; padding: 0; }
+.chain li { font-size: 12px; padding: 2px 0; border-bottom: 1px dashed #eee; }

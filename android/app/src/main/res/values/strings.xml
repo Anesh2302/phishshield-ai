@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PhishShield AI</string>
+    <string name="api_base">http://10.0.2.2:8000/api/v1</string>
+    <string name="login">Sign in</string>
+    <string name="logout">Sign out</string>
+    <string name="scan">Scan</string>
+    <string name="url_hint">https://example.com/link</string>
+    <string name="email_hint">owner@acme-security.com</string>
+    <string name="password_hint">Password</string>
+</resources>

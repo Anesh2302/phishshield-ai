@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>PhishShield AI — Options</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body class="popup">
+  <h1>PhishShield AI — Options</h1>
+  <label for="apiBase">PhishShield API base URL</label>
+  <input id="apiBase" class="field" placeholder="http://localhost:8000/api/v1" />
+  <label>
+    <input type="checkbox" id="enabled" /> Enable scanning
+  </label>
+  <button id="save" class="primary">Save</button>
+  <p id="saved" class="muted hidden">Saved.</p>
+  <p class="muted">
+    Privacy: only the URL you request is sent to your configured API. PhishShield
+    does not collect browsing history. The context-menu "check link" feature calls
+    the API with that single URL.
+  </p>
+  <script src="options.js"></script>
+</body>
+</html>

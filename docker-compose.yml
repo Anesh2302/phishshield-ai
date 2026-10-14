@@ -1,0 +1,82 @@
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-phishshield}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-phishshield}
+      POSTGRES_DB: ${POSTGRES_DB:-phishshield}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-phishshield} -d ${POSTGRES_DB:-phishshield}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-phishshield}:${POSTGRES_PASSWORD:-phishshield}@db:5432/${POSTGRES_DB:-phishshield}
+      POSTGRES_HOST: db
+      UPLOAD_DIR: /data/uploads
+      QUARANTINE_DIR: /data/quarantine
+      EVIDENCE_DIR: /data/evidence
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+      - storage:/data
+    depends_on:
+      db:
+        condition: service_healthy
+    command: >
+      sh -c "alembic upgrade head &&
+             uvicorn app.main:app --host 0.0.0.0 --port 8000"
+
+  worker:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-phishshield}:${POSTGRES_PASSWORD:-phishshield}@db:5432/${POSTGRES_DB:-phishshield}
+      POSTGRES_HOST: db
+      UPLOAD_DIR: /data/uploads
+      QUARANTINE_DIR: /data/quarantine
+      EVIDENCE_DIR: /data/evidence
+    volumes:
+      - ./backend:/app
+      - storage:/data
+    depends_on:
+      db:
+        condition: service_healthy
+    command: ["python", "-m", "app.jobs.worker"]
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_API_BASE_URL: ${NEXT_PUBLIC_API_BASE_URL:-http://localhost:8000/api/v1}
+    restart: unless-stopped
+    environment:
+      NEXT_PUBLIC_API_BASE_URL: ${NEXT_PUBLIC_API_BASE_URL:-http://localhost:8000/api/v1}
+      API_INTERNAL_URL: ${API_INTERNAL_URL:-http://backend:8000}
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+volumes:
+  pgdata:
+  storage:
